@@ -13,7 +13,7 @@ function App() {
   useEffect( () => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("/api");
+        const response = await axios.get("/test");
         setData(response.data.message);
         const response2 = await axios.get("/jane");
         setData2(response2.data.message);
