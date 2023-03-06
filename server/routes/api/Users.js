@@ -23,6 +23,8 @@ router.get("/", async (req, res) => {
     }
 });
 
+// get a single user
+
 // create a new user
 router.post("/", async (req, res) => {
     try {
@@ -37,11 +39,12 @@ router.post("/", async (req, res) => {
         } catch (error) {
             // if the server doesn't understand request, show error
             res.status(400).json(error);
+            console.error(error);
         }
     });
 
     // update a user
-    router.put("/id", async (req, res) => {
+    router.put("/:id", async (req, res) => {
         try {
             const userData = await User.update({
                 email: req.body.email,
@@ -59,11 +62,12 @@ router.post("/", async (req, res) => {
             res.status(200).json(userData);
         } catch (error) {
             res.status(400).json(error);
+            console.error(error);
         }
     });
 
     // delete a user
-    router.delete("/id", async (req, res) => {
+    router.delete("/:id", async (req, res) => {
         try {
             const userData = await User.destroy({
                 where: {
@@ -76,6 +80,7 @@ router.post("/", async (req, res) => {
             res.status(200).json(userData);
         } catch (error) {
             res.status(400).json(error);
+            console.error(error);
         }
     });
 
