@@ -44,10 +44,14 @@ User.init(
                 len: [8, 25]
             }
         },
+        // should there be two different user routes? 
+        // just just a selection for isRecruit true : false ???
     },
     {
         sequelize,
-        timestamps: false,
+        timestamps: true,
+        createdAt: true,
+        updatedAt: true,
         freezeTableName: true,
         underscored: true,
         modelName: "user"
