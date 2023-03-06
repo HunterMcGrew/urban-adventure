@@ -44,6 +44,14 @@ User.init(
                 len: [8, 25]
             }
         },
+        company: {
+            // what company they work for if recruiter
+            type: DataTypes.INTEGER,
+            references: {
+                model: "copmany",
+                key: "id",
+            },
+        },
         // should there be two different user routes? 
         // just just a selection for isRecruit true : false ???
     },

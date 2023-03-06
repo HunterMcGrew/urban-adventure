@@ -18,6 +18,29 @@ Company.init(
             allowNull: false,
 
     },
-    
+    recruiters: {
+        type: DataTypes.INTEGER,
+        references: {
+            // reference the user ID's that are recruiters for this company
+            model: "user",
+            key: "id",
+        },
+    },
+    description: {
+        type: DataTypes.STRING,
+    },
+    // need to have a reference to positions here 
+    // it will list all the companies open positions
+},
+{
+    sequelize,
+    timestamps: true,
+    freezeTableName: true,
+    createdAt: true,
+    updatedAt: true,
+    underscored: true,
+    modelName: "company",
 }
-)
+);
+
+module.exports = Company;
