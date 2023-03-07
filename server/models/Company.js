@@ -18,14 +18,14 @@ Company.init(
             allowNull: false,
 
     },
-    recruiters: {
-        type: DataTypes.INTEGER,
-        references: {
-            // reference the user ID's that are recruiters for this company
-            model: "user",
-            key: "id",
-        },
-    },
+    // recruiters: {
+    //     type: DataTypes.INTEGER,
+    //     references: {
+    //         // reference the user ID's that are recruiters for this company
+    //         model: "user",
+    //         key: "id",
+    //     },
+    // },
     description: {
         type: DataTypes.STRING,
     },
@@ -36,8 +36,6 @@ Company.init(
     sequelize,
     timestamps: true,
     freezeTableName: true,
-    createdAt: true,
-    updatedAt: true,
     underscored: true,
     modelName: "company",
 }

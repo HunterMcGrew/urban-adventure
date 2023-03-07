@@ -24,6 +24,20 @@ router.get("/", async (req, res) => {
 });
 
 // get a single user
+router.get("/:id", async (req, res) => {
+    try {
+        const userData = await User.findByPk(req.params.id, {
+
+        })
+        if (!userData) {
+            res.status(404).json({ message: "User not found" });
+        }
+        res.status(200).json(userData);
+    } catch (error) {
+        res.status(400).json(error);
+        console.error(error);
+    }
+})
 
 // create a new user
 router.post("/", async (req, res) => {
@@ -33,7 +47,8 @@ router.post("/", async (req, res) => {
             last_name: req.body.last_name,
             email: req.body.email,
             username: req.body.username,
-            password: req.body.password
+            password: req.body.password,
+            company_id: req.body.company_id
         })
         res.status(200).json(newUser);
         } catch (error) {
@@ -49,7 +64,8 @@ router.post("/", async (req, res) => {
             const userData = await User.update({
                 email: req.body.email,
                 password: req.body.password,
-                username: req.body.username
+                username: req.body.username,
+                company_id: req.body.company_id
             },
             {
                 where: {
@@ -83,40 +99,6 @@ router.post("/", async (req, res) => {
             console.error(error);
         }
     });
-
-    
-//     User.findAll({
-//         // what to include
-//         // include: [
-//         //     { model: User, as: "user" }],
-//         order: [
-//             ["id", "ASC"]]
-//     })
-//     .then((userData) => {
-//         res.status(200).json(userData);
-//     })
-//     .catch((error) => {
-//         console.error(error);
-//     }); 
-// });
-
-// create a user
-
-// router.post("/", (req, res) => {
-//     User.create({
-//         first_name: req.body.first_name,
-//         last_name: req.body.last_name,
-//         email: req.body.email,
-//         username: req.body.username,
-//         password: req.body.password
-//     })
-//     .then((newUser) => {
-//         res.status(200).json(newUser);
-//     })
-//     .catch((error) => {
-//         console.error(error);
-//     });
-// });
 
 
 

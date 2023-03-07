@@ -21,6 +21,22 @@ router.get("/", async (req, res) => {
     }
 });
 
+//get a single company
+router.get("/:id", async (req, res) => {
+    try {
+        const companyData = await Company.findByPk(req.params.id, {
+
+        })
+        if (!companyData) {
+            res.status(404).json({ message: "Company not found..." });
+        }
+        res.status(200).json(companyData);
+    } catch (error) {
+        res.status(400).json(error);
+        console.error(error);
+    }
+})
+
 // create a company
 router.post("/", async (req, res) => {
     try {
