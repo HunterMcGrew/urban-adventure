@@ -3,7 +3,8 @@
 // required
 const express = require("express");
 const routes = require("./routes");
-const sequelize = require("./config/connection");
+const mongoose = require("mongoose");
+const db = require("./config/connection");
 
 // port info
 const PORT = process.env.PORT || 3001;
@@ -27,9 +28,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(routes);
 
 // is the server running?
-sequelize.sync({ force: false }).then(() => {
-    app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`)
-});
-});
+db.once("open", () => {
+    app.listen(PORT, () => console.log(`Connected to database on port${PORT}`));
+})
 

@@ -1,66 +1,69 @@
-// User model for sequelize
-const { Model, DataTypes } = require("sequelize");
-const sequelize = require("../config/connection");
+// mongoose User Schema
 
-// initialize User model (table) by extendding off Sequilize's model class
-class User extends Model {}
+const { Schema, model } = require("mongoose");
+const { isEmail } = require("validator");
+const formatDate = require("../utils/helpers")
 
-User.init(
+const userSchema = new Schema(
     {
-        id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            primaryKey: true,
-            autoIncrement: true
-        },
-        first_name: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        last_name: {
-            type: DataTypes.STRING,
-            allowNull: false
+        username: {
+            type: String,
+            unique: true,
+            required: true,
+            trim: true
         },
         email: {
-            type: DataTypes.STRING,
-            allowNull: false,
+            type: String,
             unique: true,
-            validate: {
-                // need a regex for emaiL?
-                isEmail: true
-            }
+            required: true,
+            trim: true,
+            validate: [ isEmail, "invalid email" ],
         },
-        username: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            unique: true
+        first_name: {
+            type: String,
+            unique: false,
+            required: true,
+            trim: true,
         },
-        password: {
-            // will do the encryption at some point
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                // need a regex for email?
-                len: [8, 25]
-            }
+        last_name: {
+            type: String,
+            unique: false,
+            required: true,
+            trim: true,
+        },
+        isRecruiter: {
+            type: Boolean,
+            default: false,
         },
         company: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: "company",
-                key: "id",
-            },
+            type: Schema.Types.ObjectId,
+            ref: "company",
+            default: null
+        },
+        position: {
+            type: Schema.Types.ObjectId,
+            ref: "position",
+            default: null,
+        },
+        createdAt: {
+            type: Date,
+            default: Date.now,
+            get: formatDate
         }
-        // should there be two different user routes? 
-        // just just a selection for isRecruit true : false ???
     },
     {
-        sequelize,
-        timestamps: true,
-        freezeTableName: true,
-        underscored: true,
-        modelName: "user"
+        toJSON: {
+            virtuals: true,
+        },
+        id: false,
     }
 );
+
+// virtuals
+userSchema.virtual("full_name").get( () => {
+    return this.first_name + " " + this.last_name;
+})
+
+const User = model("user", userSchema);
 
 module.exports = User;
