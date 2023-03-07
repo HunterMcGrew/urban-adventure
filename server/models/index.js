@@ -2,25 +2,42 @@
 // const sequelize = require("sequelize");
 const User = require("./User");
 const Company = require("./Company");
+const Position = require("./Position");
 
 // // Associations
 
 User.hasOne(Company, {
-    foreignKey: "company_id",
-    onDelete: "CASCADE"
+    foreignKey: "companyId",
+    // onDelete: "CASCADE",
+    onUpdate: "CASCADE",
 });
+
+User.hasOne(Position, {
+    foreignKey: "positionId",
+    onUpdate: "CASCADE",
+})
 
 Company.hasMany(User, {
-    foreignKey: "user_id",
+    foreignKey: "userId",
     // onDelete: "CASCADE"
+    onUpdate: "CASCADE",
 });
 
-// User.hasMany(User, {
-//     foreignKey: User_id,
-//     onDelete: "CASCADE"
+
+Company.hasMany(Position, {
+    foreignKey: "positionId",
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE",
+})
+
+// Position.belongsTo(Company, {
+//     foreignKey: "companyId",
+//     // onDelete: "CASCADE"
+//     onUpdate: "CASCADE",
 // })
 
 module.exports = {
     User,
-    Company
+    Company,
+    Position
 };

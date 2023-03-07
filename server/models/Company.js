@@ -18,19 +18,25 @@ Company.init(
             allowNull: false,
 
     },
-    // recruiters: {
-    //     type: DataTypes.INTEGER,
-    //     references: {
-    //         // reference the user ID's that are recruiters for this company
-    //         model: "user",
-    //         key: "id",
-    //     },
-    // },
     description: {
         type: DataTypes.STRING,
     },
-    // need to have a reference to positions here 
+    // need to have a reference to positions here???
     // it will list all the companies open positions
+    users: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: "user",
+            key: "id",
+        },
+    },
+    positions: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: "position",
+            key: "id",
+        },
+    },
 },
 {
     sequelize,
