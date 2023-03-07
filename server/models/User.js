@@ -2,7 +2,12 @@
 
 const { Schema, model } = require("mongoose");
 const { isEmail } = require("validator");
-const formatDate = require("../utils/helpers")
+
+// getters
+const formatDate = (date) => {
+    const newDate = new Date(date);
+    return newDate.toUTCString();
+};
 
 const userSchema = new Schema(
     {
@@ -60,7 +65,7 @@ const userSchema = new Schema(
 );
 
 // virtuals
-userSchema.virtual("full_name").get( () => {
+userSchema.virtual("full_name").get( function () {
     return this.first_name + " " + this.last_name;
 })
 

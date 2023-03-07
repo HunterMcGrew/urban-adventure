@@ -1,7 +1,12 @@
 // required
 const { Schema, model } = require("mongoose");
 const { isEmail } = require("validator");
-const formatDate = require("../utils/helpers");
+
+// getters
+const formatDate = (date) => {
+    const newDate = new Date(date);
+    return newDate.toUTCString();
+};
 
 
 const companySchema = new Schema(
