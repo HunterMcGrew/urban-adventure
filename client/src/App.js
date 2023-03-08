@@ -2,12 +2,22 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import 
+import Navbar from "./components/Navbar";
 
 function App() {
 
   const [data, setData] = useState(null);
   const [data2, setData2] = useState(null);
+
+  //theme code
+  // const defaultDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  // const [theme, setTheme] = useLocalStorage("theme", defaultDark ? "dark" : "light");
+
+  // const switchTheme = () => {
+  //   const newTheme = theme === "dark" ? "light" : "dark";
+  //   setTheme(newTheme);
+  // }
+
 
   // haven't wrote an api in awhile, testing it out
   useEffect( () => {
@@ -26,28 +36,7 @@ function App() {
   }, [])
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <p>
-          {!data ? "Loading..." : data}
-        </p>
-        <p>
-          {!data2 ? "Loading..." : data2}
-        </p>
-      </header>
-    </div>
+    <Navbar></Navbar>
   );
 }
 
