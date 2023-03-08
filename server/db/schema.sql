@@ -1,6 +1,0 @@
--- DROP DATABASE
-DROP DATABASE IF EXISTS mentorship_test;
-
--- CREATE DATABASE
-CREATE DATABASE mentorship_test;
-

@@ -1,49 +1,59 @@
-// User model for sequelize
-const { Model, DataTypes } = require("sequelize");
-const sequelize = require("../config/connection");
+// required
+const { Schema, model } = require("mongoose");
+const { isEmail } = require("validator");
 
-// initialize User model (table) by extendding off Sequilize's model class
-class Position extends Model {}
+// getters
+const formatDate = (date) => {
+    const newDate = new Date(date);
+    return newDate.toUTCString();
+};
 
-Position.init(
+const positionSchema = new Schema(
     {
-        id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            primaryKey: true,
-            autoIncrement: true
-        },
         title: {
-            type: DataTypes.STRING,
-            allowNull: false,
+            type: String,
+            unique: false,
+            required: true,
+            trim: true,
         },
         description: {
-            type: DataTypes.STRING,
-            allowNull: false
+            type: String,
+            required: true,
         },
         salary: {
-            type: DataTypes.STRING,
-            allowNull: false,
+            type: String,
+            required: true,
         },
-        location: {
-            type: DataTypes.STRING,
-            allowNull: false,
+        isHybrid: {
+            type: Boolean,
+            required: true,
         },
-        // company_id: {
-        //     type: DataTypes.INTEGER,
-        //     references: {
-        //         model: "company",
-        //         key: "id",
-        //     },
-        // }
+        isRemote: {
+            type: Boolean,
+            required: true,
+        },
+        isOffice: {
+            type: Boolean,
+            required: true,
+        },
+        company: [{
+            type: Schema.Types.ObjectId,
+            ref: "company",
+        }],
+        createdAt: {
+            type: Date,
+            default: Date.now,
+            get: formatDate
+        }
     },
     {
-        sequelize,
-        timestamps: true,
-        freezeTableName: true,
-        underscored: true,
-        modelName: "position",
+        toJSON: {
+            virtuals: true,
+        },
+        id: false,
     }
 );
+
+const Position = model("position", positionSchema);
 
 module.exports = Position;
