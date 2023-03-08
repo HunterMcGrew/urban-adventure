@@ -36,10 +36,10 @@ const positionSchema = new Schema(
             type: Boolean,
             required: true,
         },
-        company: {
+        company: [{
             type: Schema.Types.ObjectId,
             ref: "company",
-        },
+        }],
         createdAt: {
             type: Date,
             default: Date.now,

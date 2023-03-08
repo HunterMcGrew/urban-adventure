@@ -20,10 +20,9 @@ const companySchema = new Schema(
         email: {
             type: String,
             unique: true,
-            required: false,
+            required: true,
             trim: true,
             validate: [ isEmail, "Invalid Email" ],
-            default: null,
         },
         description: {
             type: String,

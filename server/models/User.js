@@ -6,6 +6,7 @@ const { isEmail } = require("validator");
 // getters
 const formatDate = (date) => {
     const newDate = new Date(date);
+    console.log("newDate", newDate);
     return newDate.toUTCString();
 };
 

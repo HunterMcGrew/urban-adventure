@@ -9,7 +9,7 @@ const getUsers = async (req, res) => {
         const userData = await User.find();
         res.json(userData);
     } catch (error) {
-        if (error) throw error;
+        console.log("error", error);
         res.status(500).json(error);
     }
 };
@@ -17,13 +17,12 @@ const getUsers = async (req, res) => {
 // get a single user
 const singleUser = async (req, res) => {
     try {
-        const userData = await User.findOne({ _id: req.parmas.id })
-        if (!userData) {
-            res.status(404).json({ message: "That user doesn't exist..."});
-        }
-        res.status(200).json(userData);
+        const userData = await User.findOne({ _id: req.params.id });
+        !userData 
+        ? res.status(404).json({ message: "That user doesn't exist..."})
+        : res.status(200).json(userData);
     } catch (error) {
-        if (error) throw error;
+        console.log("error", error);
         res.status(500).json(error);
     }
 };
@@ -34,7 +33,7 @@ const createUser = async (req, res) => {
         const userData = await User.create(req.body);
         res.status(200).json(userData);
     } catch (error) {
-        if (error) throw error;
+        console.log("error", error);
         res.status(500).json(error);
     }
 };
@@ -42,13 +41,16 @@ const createUser = async (req, res) => {
 // update user
 const updateUser = async (req, res) => {
     try {
-        const userData = await User.findOneAndUpdate({ _id: req.params.id })
-        if (!userData) {
-            res.status(404).json({ message: "That user doesn't exist..." });
-        }
-        res.status(200).json(userData);
+        const userData = await User.findOneAndUpdate(
+            { _id: req.params.id },
+            req.body,
+            { new: true, runValidators: true }
+            )
+        !userData 
+        ? res.status(404).json({ message: "That user doesn't exist..."})
+        : res.status(200).json(userData);
     } catch (error) {
-        if (error) throw error;
+        console.log("error", error);
         res.status(500).json(error);
     }
 };
@@ -56,12 +58,11 @@ const updateUser = async (req, res) => {
 const deleteUser = async (req, res) => {
     try {
         const userData = await User.findOneAndDelete({ _id: req.params.id })
-        if (!userData) {
-            res.status(404).json({ message: "That user doesn't exist..." })
-        }
-        res.status(200).json(userData);
+        !userData 
+        ? res.status(404).json({ message: "That user doesn't exist..."})
+        : res.status(200).json(userData);
     } catch (error) {
-        if (error) throw error;
+        console.log("error", error);
         res.status(500).json(error);
     }
 };
