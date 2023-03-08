@@ -6,8 +6,6 @@ import Navbar from "./components/Navbar";
 
 function App() {
 
-  const [data, setData] = useState(null);
-  const [data2, setData2] = useState(null);
 
   //theme code
   // const defaultDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -20,20 +18,9 @@ function App() {
 
 
   // haven't wrote an api in awhile, testing it out
-  useEffect( () => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("/test");
-        setData(response.data.message);
-        const response2 = await axios.get("/jane");
-        setData2(response2.data.message);
-      } catch (error) {
-        console.error(error);
-      }
-    }
 
-    fetchData();
-  }, [])
+
+
 
   return (
     <Navbar></Navbar>
