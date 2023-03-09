@@ -1,4 +1,5 @@
 // import useLocalStorage from "use-local-storage";
+import Menu from './Menu.js';
 
 
 function Navbar() {
@@ -14,9 +15,11 @@ function Navbar() {
   
 
     return (
-        <nav className="m-2 p-2">
-            <div className="">mentorship</div>
-            <div id="pancake" className=""></div>
+        <nav className="m-2 p-2 d-flex justify-content-between">
+            <div className="">
+                <h1>mentorship</h1>
+            </div>
+            <Menu></Menu>
         </nav>
     )
 }
