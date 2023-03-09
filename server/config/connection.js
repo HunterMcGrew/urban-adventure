@@ -1,28 +1,25 @@
 // mongoose connection info
 const { mongoose, connect, connection } = require('mongoose');
+const dotenv = require('dotenv').config(); 
+
 
 // Wrap Mongoose around local connection to MongoDB
-mongoose.connect('mongodb://127.0.0.1:27017/mentorship_test', {
+// mongoose.connect('mongodb://127.0.0.1:27017/mentorship_test', {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// });
+
+const uri = process.env.MONGODB_URI;
+
+mongoose.connect(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-});
+})
+.then(() => console.log("connected to db atlas"))
+.catch((error) => {
+  console.error(error);
+})
+;
 
 // Export connection 
 module.exports = mongoose.connection;
-
-
-// sequelize connection config
-// require('dotenv').config();
-// const Sequelize = require('sequelize');
-
-// const sequelize = process.env.JAWSDB_URL
-//   ? new Sequelize(process.env.JAWSDB_URL)
-//   : new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
-//       host: 'localhost',
-//       dialect: 'mysql',
-//       dialectOptions: {
-//         decimalNumbers: true,
-//       },
-//     });
-
-// module.exports = sequelize;
