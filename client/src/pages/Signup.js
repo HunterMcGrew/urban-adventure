@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Signup = () => {
   return (
-    <div>
+    <div className="mt-5">
       <h2>Sign Up</h2>
 
         <form className="px-4 py-3">

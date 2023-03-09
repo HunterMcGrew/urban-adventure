@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar.js";
 import Home from "./pages/Home";
 import Login from "./pages/Login.js";
 import Signup from "./pages/Signup.js";
+import Profile from "./pages/Profile.js";
 
 // import useLocalStorage from "use-local-storage";
 // import to let us use React 'Browser Router' as 'Router'
@@ -53,6 +54,13 @@ function App() {
             path="/signup"
             element={<>
               <Signup />
+            </>}
+            >
+          </Route>
+          <Route
+            path="/profile"
+            element={<>
+              <Profile />
             </>}
             >
           </Route>

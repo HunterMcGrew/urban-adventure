@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 
 const Login = () => {
   return (
-    <div>
+    <div className="mt-5">
       <h2>Log In</h2>
 
       <form className="px-4 py-3">
