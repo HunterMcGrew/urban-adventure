@@ -11,6 +11,28 @@
   height: 100%
 }
 
+.bg-grey{
+  background-color: #f4f4f4;
+}
+
+.mb-5{
+  margin-bottom: 50px;
+}
+
+.mt-5{
+  margin-top: 50px;
+}
+
+.mt-3{
+  margin-top: 30px;
+}
+
+
+
+
+
+
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

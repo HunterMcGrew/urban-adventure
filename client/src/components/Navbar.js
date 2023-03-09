@@ -15,9 +15,9 @@ function Navbar() {
   
 
     return (
-        <nav className="m-2 p-2 d-flex justify-content-between">
+        <nav className=" p-2 d-flex justify-content-between ">
             <div className="">
-                <h1>mentorship</h1>
+                <h1 className="">mentorship</h1>
             </div>
             <Menu></Menu>
         </nav>
