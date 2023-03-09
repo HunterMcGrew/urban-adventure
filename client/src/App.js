@@ -2,6 +2,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import "./App.css";
+import Navbar from "./components/Navbar";
+import Searchbar from "./components/Searchbar";
 import useLocalStorage from "use-local-storage";
 // import to let us use React 'Browser Router' as 'Router'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
@@ -10,6 +12,15 @@ import Navbar from "./components/Navbar";
 
 
 function App() {
+
+  //theme code
+  // const defaultDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  // const [theme, setTheme] = useLocalStorage("theme", defaultDark ? "dark" : "light");
+
+  // const switchTheme = () => {
+  //   const newTheme = theme === "dark" ? "light" : "dark";
+  //   setTheme(newTheme);
+  // }
 
   return (
     <div className="App" data-theme={null}>
@@ -20,6 +31,7 @@ function App() {
             path="/"
             element={<>
               <Navbar />
+              <Searchbar />
             </>}
           >
           </Route>
@@ -49,7 +61,7 @@ function App() {
         </Routes>
       </ Router>
     </div>
-  
+
   );
 }
 
