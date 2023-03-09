@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import Navbar from "./components/Navbar";
+import Searchbar from "./components/Searchbar";
 
 function App() {
 
@@ -23,7 +24,11 @@ function App() {
 
 
   return (
-    <Navbar></Navbar>
+    <div>
+      <Navbar></Navbar>
+      <Searchbar></Searchbar>
+    </div>
+
   );
 }
 
