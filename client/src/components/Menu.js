@@ -25,6 +25,7 @@ const Menu = () => {
       <a className="dropdown-item" href="*">posts</a>
       <a className="dropdown-item" href="/login">log in</a>
       <a className="dropdown-item" href="/signup">sign up</a>
+      <a className="dropdown-item" href="/">settings</a>
     </div>
   </div>
   )
