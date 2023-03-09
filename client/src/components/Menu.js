@@ -20,9 +20,9 @@ const Menu = () => {
     </button>
     <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
       <a className="dropdown-item" href="/profile">profile</a>
-      <a className="dropdown-item" href="#">notifications</a>
+      <a className="dropdown-item" href="*">notifications</a>
       <a className="dropdown-item" href="/">job search</a>
-      <a className="dropdown-item" href="#">posts</a>
+      <a className="dropdown-item" href="*">posts</a>
       <a className="dropdown-item" href="/login">log in</a>
       <a className="dropdown-item" href="/signup">sign up</a>
     </div>
