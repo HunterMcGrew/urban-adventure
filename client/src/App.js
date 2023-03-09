@@ -2,13 +2,16 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import "./App.css";
-import Navbar from "./components/Navbar";
-import Searchbar from "./components/Searchbar";
-import useLocalStorage from "use-local-storage";
+import Navbar from "./components/Navbar.js";
+import Home from "./pages/Home";
+import Login from "./pages/Login.js";
+import Signup from "./pages/Signup.js";
+
+// import useLocalStorage from "use-local-storage";
 // import to let us use React 'Browser Router' as 'Router'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 // Component Imports
-import Navbar from "./components/Navbar";
+
 
 
 function App() {
@@ -23,15 +26,17 @@ function App() {
   // }
 
   return (
+    <div>
+      <Navbar></Navbar>
     <div className="App" data-theme={null}>
+
       <Router>
         <Routes>
           {/* Defining each route for pages depending on path */}
           <Route
             path="/"
             element={<>
-              <Navbar />
-              <Searchbar />
+              <Home></Home>
             </>}
           >
           </Route>
@@ -39,14 +44,15 @@ function App() {
             path="/login"
             element={<> 
             {/* <> after element lets you add multiple components. */}
-              <Navbar />
+              <Login />
+            
             </>}
             >
           </Route>
           <Route
             path="/signup"
             element={<>
-              <Navbar />
+              <Signup />
             </>}
             >
           </Route>
@@ -61,7 +67,7 @@ function App() {
         </Routes>
       </ Router>
     </div>
-
+    </div>
   );
 }
 
