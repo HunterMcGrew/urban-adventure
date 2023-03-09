@@ -1,50 +1,58 @@
-// User model for sequelize
-const { Model, DataTypes } = require("sequelize");
-const sequelize = require("../config/connection");
+// required
+const { Schema, model } = require("mongoose");
+const { isEmail } = require("validator");
 
-// initialize User model (table) by extendding off Sequilize's model class
-class Company extends Model {}
+// getters
+const formatDate = (date) => {
+    const newDate = new Date(date);
+    return newDate.toUTCString();
+};
 
-Company.init(
+
+const companySchema = new Schema(
     {
-    id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        primaryKey: true, 
-        autoIncrement: true
-    },
-    company_name: {
-            type: DataTypes.STRING,
-            allowNull: false,
-
-    },
-    description: {
-        type: DataTypes.STRING,
-    },
-    // need to have a reference to positions here???
-    // it will list all the companies open positions
-    users: {
-        type: DataTypes.INTEGER,
-        references: {
-            model: "user",
-            key: "id",
+        name: {
+            type: String,
+            unique: true,
+            required: true,
+            trim: true,
         },
-    },
-    positions: {
-        type: DataTypes.INTEGER,
-        references: {
-            model: "position",
-            key: "id",
+        email: {
+            type: String,
+            unique: true,
+            required: true,
+            trim: true,
+            validate: [ isEmail, "Invalid Email" ],
         },
+        description: {
+            type: String,
+            unique: false,
+            required: true,
+        },
+        recruiters: [{
+            type: Schema.Types.ObjectId,
+            ref: "user",
+            default: null
+        }],
+        job_openings: [{
+            type: Schema.Types.ObjectId,
+            ref: "position",
+            default: null,
+        }],
+        createdAt: {
+            type: Date,
+            default: Date.now,
+            get: formatDate
+        }
     },
-},
-{
-    sequelize,
-    timestamps: true,
-    freezeTableName: true,
-    underscored: true,
-    modelName: "company",
-}
+    {
+        toJSON: {
+            virtuals: true,
+        },
+        id: false,
+    }
 );
+
+const Company = model("company", companySchema);
 
 module.exports = Company;
