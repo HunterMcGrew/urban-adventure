@@ -26,7 +26,6 @@ function App() {
   return (
     <div>
       <Navbar></Navbar>
-      <Searchbar></Searchbar>
     </div>
 
   );
