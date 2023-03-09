@@ -3,7 +3,11 @@ import { useEffect, useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import Navbar from "./components/Navbar";
+
 import Searchbar from "./components/Searchbar";
+
+import useLocalStorage from "use-local-storage";
+
 
 function App() {
 
