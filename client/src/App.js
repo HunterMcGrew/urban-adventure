@@ -7,7 +7,6 @@ import Home from "./pages/Home";
 import Login from "./pages/Login.js";
 import Signup from "./pages/Signup.js";
 import Profile from "./pages/Profile.js";
-import Feed from "./pages/Feed";
 
 // import useLocalStorage from "use-local-storage";
 // import to let us use React 'Browser Router' as 'Router'
@@ -61,14 +60,6 @@ function App() {
 							element={
 								<>
 									<Profile />
-								</>
-							}
-						></Route>
-						<Route
-							path="/feed"
-							element={
-								<>
-									<Feed />
 								</>
 							}
 						></Route>

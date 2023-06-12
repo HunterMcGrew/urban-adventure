@@ -1,6 +1,6 @@
 import React from "react";
 
-const Feed = () => {
+const Job = () => {
 	const styles = {
 		feedContainer: {
 			width: "90%",
@@ -16,11 +16,11 @@ const Feed = () => {
 	return (
 		<div
 			style={styles.feedContainer}
-			className="feedContainer container-fluid bg-secondary mt-2 rounded-4 py-2 shadow"
+			className="feedContainer container-fluid bg-grey mt-2 rounded-4 py-2 shadow mb-4"
 		>
 			<div className="feedTitleContainer">
 				<p className="p-0 m-0 text-start fs-4 fw-bold">
-					Tatoo Apprenticeship
+					Tattoo Apprenticeship
 				</p>
 				<p className="p-0 m-0 text-start ">Chicago, IL</p>
 				<p className="p-0 m-0 text-start">Part-Time/Full-Time</p>
@@ -58,4 +58,4 @@ const Feed = () => {
 	);
 };
 
-export default Feed;
+export default Job;
