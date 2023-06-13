@@ -27,9 +27,16 @@
   margin-top: 30px;
 }
 
-
-
-
+.bg-grey{
+  background-color: rgb(215, 214, 214);
+}
+.bold{
+  font-weight: 700;
+}
+.mx-3{
+  margin-left: 10px;
+  margin-right: 10px;
+}
 
 
 

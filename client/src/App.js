@@ -10,73 +10,75 @@ import Profile from "./pages/Profile.js";
 
 // import useLocalStorage from "use-local-storage";
 // import to let us use React 'Browser Router' as 'Router'
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // Component Imports
 
-
-
 function App() {
+	//theme code
+	// const defaultDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+	// const [theme, setTheme] = useLocalStorage("theme", defaultDark ? "dark" : "light");
 
-  //theme code
-  // const defaultDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  // const [theme, setTheme] = useLocalStorage("theme", defaultDark ? "dark" : "light");
+	// const switchTheme = () => {
+	//   const newTheme = theme === "dark" ? "light" : "dark";
+	//   setTheme(newTheme);
+	// }
 
-  // const switchTheme = () => {
-  //   const newTheme = theme === "dark" ? "light" : "dark";
-  //   setTheme(newTheme);
-  // }
-
-  return (
-    <div>
-      <Navbar></Navbar>
-    <div className="App" data-theme={null}>
-
-      <Router>
-        <Routes>
-          {/* Defining each route for pages depending on path */}
-          <Route
-            path="/"
-            element={<>
-              <Home></Home>
-            </>}
-          >
-          </Route>
-          <Route 
-            path="/login"
-            element={<> 
-            {/* <> after element lets you add multiple components. */}
-              <Login />
-            
-            </>}
-            >
-          </Route>
-          <Route
-            path="/signup"
-            element={<>
-              <Signup />
-            </>}
-            >
-          </Route>
-          <Route
-            path="/profile"
-            element={<>
-              <Profile />
-            </>}
-            >
-          </Route>
-          {/* catch all route, * is anything we haven't defined, a 404 route */}
-          <Route
-            path="*"
-            element={<>
-            <div><h2>Nothing Here</h2></div>
-            </>}
-            >
-          </Route>
-        </Routes>
-      </ Router>
-    </div>
-    </div>
-  );
+	return (
+		<div>
+			<Navbar></Navbar>
+			<div className="App" data-theme={null}>
+				<Router>
+					<Routes>
+						{/* Defining each route for pages depending on path */}
+						<Route
+							path="/"
+							element={
+								<>
+									<Home></Home>
+								</>
+							}
+						></Route>
+						<Route
+							path="/login"
+							element={
+								<>
+									{/* <> after element lets you add multiple components. */}
+									<Login />
+								</>
+							}
+						></Route>
+						<Route
+							path="/signup"
+							element={
+								<>
+									<Signup />
+								</>
+							}
+						></Route>
+						<Route
+							path="/profile"
+							element={
+								<>
+									<Profile />
+								</>
+							}
+						></Route>
+						{/* catch all route, * is anything we haven't defined, a 404 route */}
+						<Route
+							path="*"
+							element={
+								<>
+									<div>
+										<h2>Nothing Here</h2>
+									</div>
+								</>
+							}
+						></Route>
+					</Routes>
+				</Router>
+			</div>
+		</div>
+	);
 }
 
 export default App;
