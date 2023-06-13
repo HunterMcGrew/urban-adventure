@@ -37,7 +37,9 @@
   margin-left: 10px;
   margin-right: 10px;
 }
-
+textarea{
+  height: 200px;
+}
 
 
 @media (prefers-reduced-motion: no-preference) {

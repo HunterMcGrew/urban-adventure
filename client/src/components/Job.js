@@ -25,7 +25,11 @@ const Job = () => {
 				<p className="p-0 m-0 text-start ">Chicago, IL</p>
 				<p className="p-0 m-0 text-start">Part-Time/Full-Time</p>
 			</div>
-
+			<div className="feedInfo mt-2">
+				<p className="p-0 m-0 text-start">
+					Description: Learn from mentor, practice, help around shop, do lil dances
+				</p>
+			</div>
 			<div className="feedInfo mt-2">
 				<p className="p-0 m-0 text-start">
 					Requirements: CPR Certification, Art Portfolio, a good
