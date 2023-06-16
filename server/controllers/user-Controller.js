@@ -3,6 +3,11 @@
 const User = require("../models/User");
 const Company = require("../models/Company");
 const bcrypt = require("bcrypt");
+// const { v4: uuidv4 } = require("uuid");
+
+// const generateSessionToken = () => {
+// 	return uuidv4();
+// };
 
 // get all users
 const getUsers = async (req, res) => {
@@ -69,28 +74,32 @@ const deleteUser = async (req, res) => {
 };
 
 const signup = async (req, res) => {
-	const { username, password } = req.body;
-
+	const { username, email, password } = req.body;
 	try {
 		const existingUser = await User.findOne({ username });
 		if (existingUser) {
 			return res.status(409).json({ message: "Username already exists" });
 		}
 
+		console.log(password, "password");
+		console.log(username, "username");
+		console.log(email, "email");
+
 		const hashPassword = await bcrypt.hash(password, 10);
 
 		const newUser = new User({
 			username,
+			email,
 			password: hashPassword,
 		});
 
 		await newUser.save();
 
-		const sessionToken = generateSessionToken();
-		req.session.token = sessionToken;
-		res.session.username = username;
+		// const sessionToken = generateSessionToken();
+		// req.session.token = sessionToken;
+		// res.session.username = username;
 
-		res.redirect("/home");
+		res.redirect("/");
 	} catch (error) {
 		console.error("Error during signup: ", error);
 		res.status(500).json({ message: "Server error" });
@@ -115,11 +124,11 @@ const login = async (req, res) => {
 				.json({ message: "Invalid username or password" });
 		}
 
-		const sessionToken = generateSessionToken();
-		req.session.token = sessionToken;
-		res.session.username = user.username;
+		// const sessionToken = generateSessionToken();
+		// req.session.token = sessionToken;
+		// res.session.username = user.username;
 
-		res.redirect("/home");
+		res.redirect("/");
 	} catch (error) {
 		console.error("Error during login: ", error);
 		res.status(500).json({ message: "Server error" });

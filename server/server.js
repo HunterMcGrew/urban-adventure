@@ -3,10 +3,11 @@
 // required
 const express = require("express");
 const session = require("express-session");
-const MongoDBStore = require("connect-mongodb-session");
+const MongoDBStore = require("connect-mongodb-session")(session);
 const routes = require("./routes");
 const mongoose = require("mongoose");
 const db = require("./config/connection");
+const bodyParser = require("body-parser");
 
 // port info & other variables
 const PORT = process.env.PORT || 3001;
@@ -52,11 +53,10 @@ const sess = {
 // config
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(session(sess));
 
 // turn on routes
 app.use(routes);
-
-app.use(session(sess));
 
 // is the server running?
 db.once("open", () => {

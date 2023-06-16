@@ -28,7 +28,7 @@ const userSchema = new Schema(
 		name: {
 			type: String,
 			unique: false,
-			required: true,
+			required: false,
 			trim: true,
 		},
 		// needs to be an ARRAY with the OBJECT inside
@@ -71,6 +71,29 @@ const userSchema = new Schema(
 // userSchema.virtual("full_name").get(function () {
 // 	return this.first_name + " " + this.last_name;
 // });
+
+// Hash the password before saving the user
+userSchema.pre("save", async function (next) {
+	try {
+		if (!this.isModified("password")) {
+			return next();
+		}
+
+		const saltRounds = 10;
+		const hashedPassword = await bcrypt.hash(this.password, saltRounds);
+
+		this.password = hashedPassword;
+
+		next();
+	} catch (error) {
+		next(error);
+	}
+});
+
+// Compare passwords
+userSchema.methods.comparePassword = async function (password) {
+	return bcrypt.compare(password, this.password);
+};
 
 const User = model("user", userSchema);
 
