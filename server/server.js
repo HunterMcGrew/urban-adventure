@@ -7,7 +7,6 @@ const MongoDBStore = require("connect-mongodb-session")(session);
 const routes = require("./routes");
 const mongoose = require("mongoose");
 const db = require("./config/connection");
-const bodyParser = require("body-parser");
 
 // port info & other variables
 const PORT = process.env.PORT || 3001;
@@ -41,14 +40,6 @@ const sess = {
 	resave: true,
 	saveUninitialized: true,
 };
-
-// testing api and react
-// app.get("/test", (req, res) => {
-//     res.json({ message: `Hello! The server is running on port ${PORT}`})
-// });
-// app.get("/jane", (req, res) => {
-//     res.json({ message: `Jane is amazing`})
-// });
 
 // config
 app.use(express.json());
