@@ -74,6 +74,7 @@ deleteUser = async (req, res) => {
 };
 
 signup = async (req, res) => {
+	if (req.session.authorized) res.redirect("/", {username: req.session.user.username})
 	const { username, email, password } = req.body;
 	try {
 		const existingUser = await User.findOne({ username });
@@ -91,6 +92,11 @@ signup = async (req, res) => {
 
 		await newUser.save();
 
+		if (newUser) {
+			req.session.user = newUser;
+			req.session.authorized = true;
+		}
+
 		res.redirect("/");
 		
 	} catch (error) {
@@ -100,6 +106,7 @@ signup = async (req, res) => {
 };
 
 login = async (req, res) => {
+	if (req.session.authorized) res.redirect("/", {username: req.session.user.username})
 	const { username, password } = req.body;
 
 	try {
@@ -117,14 +124,12 @@ login = async (req, res) => {
 				.json({ message: "Invalid username or password" });
 		}
 
-		// const sessionToken = generateSessionToken();
-		// req.session.token = sessionToken;
-		// res.session.username = user.username;
+		if (isValidPassword) {
+			req.session.user = newUser;
+			req.session.authorized = true;
+		}
+		res.redirect("/");
 
-		// res.redirect("/");
-		res.render("login", {
-			redirect: "/login",
-		})
 	} catch (error) {
 		console.error("Error during login: ", error);
 		res.status(500).json({ message: "Server error" });
