@@ -95,11 +95,8 @@ const signup = async (req, res) => {
 
 		await newUser.save();
 
-		// const sessionToken = generateSessionToken();
-		// req.session.token = sessionToken;
-		// res.session.username = username;
-
 		res.redirect("/");
+		
 	} catch (error) {
 		console.error("Error during signup: ", error);
 		res.status(500).json({ message: "Server error" });
@@ -128,7 +125,10 @@ const login = async (req, res) => {
 		// req.session.token = sessionToken;
 		// res.session.username = user.username;
 
-		res.redirect("/");
+		// res.redirect("/");
+		res.render("login", {
+			redirect: "/login",
+		})
 	} catch (error) {
 		console.error("Error during login: ", error);
 		res.status(500).json({ message: "Server error" });
