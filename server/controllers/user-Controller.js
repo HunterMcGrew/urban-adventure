@@ -10,7 +10,7 @@ const bcrypt = require("bcrypt");
 // };
 
 // get all users
-const getUsers = async (req, res) => {
+getUsers = async (req, res) => {
 	try {
 		const userData = await User.find();
 		res.json(userData);
@@ -21,7 +21,7 @@ const getUsers = async (req, res) => {
 };
 
 // get a single user
-const singleUser = async (req, res) => {
+singleUser = async (req, res) => {
 	try {
 		const userData = await User.findOne({ _id: req.params.id });
 		!userData
@@ -34,7 +34,7 @@ const singleUser = async (req, res) => {
 };
 
 // create a new user
-const createUser = async (req, res) => {
+createUser = async (req, res) => {
 	try {
 		const userData = await User.create(req.body);
 		res.status(200).json(userData);
@@ -45,7 +45,7 @@ const createUser = async (req, res) => {
 };
 
 // update user
-const updateUser = async (req, res) => {
+updateUser = async (req, res) => {
 	try {
 		const userData = await User.findOneAndUpdate(
 			{ _id: req.params.id },
@@ -61,7 +61,7 @@ const updateUser = async (req, res) => {
 	}
 };
 
-const deleteUser = async (req, res) => {
+deleteUser = async (req, res) => {
 	try {
 		const userData = await User.findOneAndDelete({ _id: req.params.id });
 		!userData
@@ -73,17 +73,13 @@ const deleteUser = async (req, res) => {
 	}
 };
 
-const signup = async (req, res) => {
+signup = async (req, res) => {
 	const { username, email, password } = req.body;
 	try {
 		const existingUser = await User.findOne({ username });
 		if (existingUser) {
 			return res.status(409).json({ message: "Username already exists" });
 		}
-
-		console.log(password, "password");
-		console.log(username, "username");
-		console.log(email, "email");
 
 		const hashPassword = await bcrypt.hash(password, 10);
 
@@ -103,7 +99,7 @@ const signup = async (req, res) => {
 	}
 };
 
-const login = async (req, res) => {
+login = async (req, res) => {
 	const { username, password } = req.body;
 
 	try {
