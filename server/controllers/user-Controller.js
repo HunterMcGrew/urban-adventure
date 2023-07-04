@@ -3,11 +3,6 @@
 const User = require("../models/User");
 const Company = require("../models/Company");
 const bcrypt = require("bcrypt");
-// const { v4: uuidv4 } = require("uuid");
-
-// const generateSessionToken = () => {
-// 	return uuidv4();
-// };
 
 // get all users
 getUsers = async (req, res) => {
@@ -33,7 +28,7 @@ singleUser = async (req, res) => {
 	}
 };
 
-// create a new user
+// create a new user ** for testing ** will delete later
 createUser = async (req, res) => {
 	try {
 		const userData = await User.create(req.body);
@@ -52,9 +47,16 @@ updateUser = async (req, res) => {
 			req.body,
 			{ new: true, runValidators: true }
 		);
-		!userData
+		const updatedUser = !userData
 			? res.status(404).json({ message: "That user doesn't exist..." })
 			: res.status(200).json(userData);
+        // do i need to save()?
+
+        if (updatedUser) {
+			req.session.user = updatedUser;
+			req.session.authorized = true;
+		}
+        
 	} catch (error) {
 		console.log("error", error);
 		res.status(500).json(error);
