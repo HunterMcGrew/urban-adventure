@@ -1,12 +1,39 @@
-import React from 'react';
-import Navbar from '../components/Navbar.js';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+
 
 const Profile = () => {
+  const [userData, setUserData] = useState();
+
+  useEffect(() => {
+    const getProfileData = async (req, res) => {
+      // const userId = req;
+      try {
+        const response = await axios.get(`/api/users/:id`, {
+          withCredentials: true
+        });
+        const userData = response.data;
+        setUserData(userData);
+        console.log("userData", userData); 
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    getProfileData();
+  }, []);
+  
+
+  if(!userData) {
+    return (
+      <div></div>
+    )
+  }
+
   return (
     <div className="mt-1">
       <div className="bg-grey p-3">
         <div className="d-flex justify-content-between">
-          <h2>Jane McPheron</h2>
+          <h2>{userData.name}</h2>
           <button type="button" className="btn btn-primary">Edit Profile</button>
         </div>
         <div className="">

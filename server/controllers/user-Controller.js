@@ -18,7 +18,7 @@ getUsers = async (req, res) => {
 // get a single user
 singleUser = async (req, res) => {
 	try {
-		const userData = await User.findOne({ _id: req.params.id });
+		const userData = await User.findOne({ username: req.session.user.username });
 		!userData
 			? res.status(404).json({ message: "That user doesn't exist..." })
 			: res.status(200).json(userData);
@@ -77,7 +77,7 @@ deleteUser = async (req, res) => {
 
 signup = async (req, res) => {
 	if (req.session.authorized) res.redirect("/", {username: req.session.user.username})
-	const { username, email, password } = req.body;
+	const { name, username, email, password, id } = req.body;
 	try {
 		const existingUser = await User.findOne({ username });
 		if (existingUser) {
@@ -87,6 +87,7 @@ signup = async (req, res) => {
 		const hashPassword = await bcrypt.hash(password, 10);
 
 		const newUser = new User({
+			name,
 			username,
 			email,
 			password: hashPassword,
@@ -97,6 +98,7 @@ signup = async (req, res) => {
 		if (newUser) {
 			req.session.user = newUser;
 			req.session.authorized = true;
+			req.session.user.id = id;
 		}
 
 		res.redirect("/");
