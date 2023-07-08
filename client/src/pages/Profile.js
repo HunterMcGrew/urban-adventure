@@ -7,7 +7,7 @@ const Profile = () => {
       <div className="bg-grey p-3">
         <div className="d-flex justify-content-between">
           <h2>Jane McPheron</h2>
-          <button type="button" class="btn btn-primary">Edit Profile</button>
+          <button type="button" className="btn btn-primary">Edit Profile</button>
         </div>
         <div className="">
           <h5 className="d-flex justify-content-left">Chicago, IL</h5>
