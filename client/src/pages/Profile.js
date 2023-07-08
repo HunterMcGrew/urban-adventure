@@ -22,7 +22,7 @@ const Profile = () => {
     getProfileData();
   }, []);
   
-
+  // if there is nothing in the database or it hasn't retreived it yet.
   if(!userData) {
     return (
       <div className="mt-1">
@@ -86,6 +86,7 @@ const Profile = () => {
     )
   }
 
+  // what shows when the data is populated from the database
   return (
     <div className="mt-1">
       <div className="bg-grey p-3">
