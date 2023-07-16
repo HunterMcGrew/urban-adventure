@@ -42,7 +42,7 @@ const Job = () => {
 				<div className="">
 					<button
 						type="button"
-						class="btn btn-primary shadow-sm"
+						className="btn btn-primary shadow-sm"
 						style={styles.primaryBtn}
 					>
 						Apply
@@ -51,7 +51,7 @@ const Job = () => {
 				<div className="">
 					<button
 						type="button"
-						class="btn btn-primary shadow-sm"
+						className="btn btn-primary shadow-sm"
 						style={styles.favoriteBtn}
 					>
 						Favorite
