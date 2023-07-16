@@ -16,7 +16,6 @@ const CreateJob = () => {
 
             <textarea className="form-control" placeholder="Job Description" aria-label="Job Description"></textarea>
 
-            <textarea class="form-control" placeholder="Job Description" aria-label="Job Description"></textarea>
         </div>
         <div className="input-group mb-3">
             <textarea className="form-control" placeholder="Requirements" aria-label="Requirements"></textarea>
