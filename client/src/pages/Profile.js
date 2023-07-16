@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { UpdateProfileModal } from '../modals/UpdateProfileModal';
 
 
 const Profile = () => {
   const [userData, setUserData] = useState();
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const getProfileData = async (req, res) => {
@@ -21,6 +23,16 @@ const Profile = () => {
     }
     getProfileData();
   }, []);
+
+  const openModal = () => {
+    setIsOpen(true);
+  }
+
+  const closeModal = () => {
+    setIsOpen(false);
+  }
+
+  console.log("isOpen", isOpen);
   
   // if there is nothing in the database or it hasn't retreived it yet.
   if(!userData) {
@@ -88,11 +100,12 @@ const Profile = () => {
 
   // what shows when the data is populated from the database
   return (
+    <>
     <div className="mt-1">
       <div className="bg-grey p-3">
         <div className="d-flex justify-content-between">
           <h2>{userData.name}</h2>
-          <button type="button" className="btn btn-primary">Edit Profile</button>
+          <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onClick={openModal}>Edit Profile</button>
         </div>
         <div className="">
           <h5 className="d-flex justify-content-left">Chicago, IL</h5>
@@ -146,6 +159,8 @@ const Profile = () => {
       </div>
       <button type="button" className="btn btn-primary mt-3 mb-3">Contact</button>
     </div>
+    <UpdateProfileModal isOpen={isOpen} closeModal={closeModal}/>
+    </>
   )
 }
 
