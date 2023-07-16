@@ -7,7 +7,7 @@ const {
 	updateUser,
 	deleteUser,
 	signup,
-	login,
+	login
 } = require("../../controllers/user-Controller");
 
 // /api/users
