@@ -76,7 +76,7 @@ deleteUser = async (req, res) => {
 };
 
 signup = async (req, res) => {
-	if (req.session.authorized) res.redirect({email: req.session.user.email}, "/")
+	if (req.session.authorized) res.redirect("/", {email: req.session.user.email})
 	const { name, email, password, id } = req.body;
 	try {
 		const existingUser = await User.findOne({ email });
@@ -110,7 +110,7 @@ signup = async (req, res) => {
 };
 
 login = async (req, res) => {
-	if (req.session.authorized) res.redirect("/", {username: req.session.user.username})
+	if (req.session.authorized) res.redirect("/", {email: req.session.user.email})
 	const { username, password } = req.body;
 
 	try {
