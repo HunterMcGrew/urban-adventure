@@ -2,9 +2,6 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { UpdateProfileModal } from '../modals/UpdateProfileModal';
 
-import Navbar from '../components/Navbar.js';
-
-
 const Profile = () => {
   const [userData, setUserData] = useState();
   const [isOpen, setIsOpen] = useState(false);

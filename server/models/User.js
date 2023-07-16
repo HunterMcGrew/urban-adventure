@@ -2,6 +2,7 @@
 
 const { Schema, model } = require("mongoose");
 const { isEmail } = require("validator");
+const bcrypt = require("bcrypt");
 
 // getters
 const formatDate = (date) => {
@@ -12,12 +13,6 @@ const formatDate = (date) => {
 
 const userSchema = new Schema(
 	{
-		username: {
-			type: String,
-			unique: true,
-			required: true,
-			trim: true,
-		},
 		email: {
 			type: String,
 			unique: true,
@@ -30,6 +25,12 @@ const userSchema = new Schema(
 			unique: false,
 			required: false,
 			trim: true,
+		},
+		password: {
+			type: String,
+			unique: false,
+			required: true,
+			minLength: 8
 		},
 		// needs to be an ARRAY with the OBJECT inside
 		// will that work???
