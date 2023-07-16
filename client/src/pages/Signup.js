@@ -101,14 +101,6 @@ const Signup = () => {
 						onChange={handlePassChange}
 					/>
 				</div>
-				<div className="form-check m-1 justify-content-center d-flex">
-					<input
-						type="checkbox"
-						className="form-check-input m-1"
-						id="dropdownCheck"
-					/>
-					<p className="">Are you hiring?</p>
-				</div>
 
 				<Link to="/">
 					{" "}

@@ -9,6 +9,7 @@ import Signup from "./pages/Signup.js";
 import Profile from "./pages/Profile.js";
 import CreateJob from "./pages/CreateJob.js";
 import EditProfile from "./pages/EditProfile.js";
+import Settings from "./pages/Settings.js";
 
 // import useLocalStorage from "use-local-storage";
 // import to let us use React 'Browser Router' as 'Router'
@@ -70,6 +71,14 @@ function App() {
 							element={
 								<>
 									<Profile />
+								</>
+							}
+						></Route>
+												<Route
+							path="/settings"
+							element={
+								<>
+									<Settings />
 								</>
 							}
 						></Route>
