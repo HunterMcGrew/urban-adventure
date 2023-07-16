@@ -3,10 +3,15 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
 const Signup = () => {
+	const [nameInput, setNameInput] = useState("");
 	const [username, setUsername] = useState("");
 	const [userEmail, setUserEmail] = useState("");
 	const [userPass, setUserPass] = useState("");
 	const navigate = useNavigate();
+
+	const handleNameChange = (event) => {
+		setNameInput(event.nativeEvent.target.value);
+	};
 
 	const handleUserChange = (event) => {
 		setUsername(event.nativeEvent.target.value);
@@ -28,9 +33,10 @@ const Signup = () => {
 		event.preventDefault();
 
 		const data = {
+			name: nameInput,
 			username: username,
 			email: userEmail,
-			password: userPass,
+			password: userPass
 		};
 
 		try {
@@ -58,6 +64,15 @@ const Signup = () => {
 
 			<form className="px-4 py-3">
 				<div>
+					<div className="form-group m-1">
+						<input
+							type="text"
+							className="form-control"
+							id="name"
+							placeholder="name"
+							onChange={handleNameChange}
+						/>
+					</div>
 					<div className="form-group m-1">
 						<input
 							type="text"
@@ -107,16 +122,11 @@ const Signup = () => {
 				</Link>
 			</form>
 			<div className="dropdown-divider"></div>
-			<Link to="/login">
-				{/* <Link /> is react for <a> so those a's aren't needed. but you will need to 
-        		style the elements so they are to your liking once you comment out or delete the <a>'s */}
-				<a className="dropdown-item" href="#">
-					Already have an account? Sign in
-				</a>
+			<Link className="dropdown-item" to="/login">
 			</Link>
-			<a className="dropdown-item" href="#">
+			<Link className="dropdown-item" to="#">
 				Forgot password?
-			</a>
+			</Link>
 		</div>
 	);
 };

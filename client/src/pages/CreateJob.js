@@ -13,6 +13,9 @@ const CreateJob = () => {
             <input type="text" className="form-control" placeholder="Job Type" aria-label="Job Type" aria-describedby="basic-addon1"></input>
         </div>
         <div className="input-group mb-3">
+
+            <textarea className="form-control" placeholder="Job Description" aria-label="Job Description"></textarea>
+
             <textarea class="form-control" placeholder="Job Description" aria-label="Job Description"></textarea>
         </div>
         <div className="input-group mb-3">
@@ -21,6 +24,7 @@ const CreateJob = () => {
         <div className="input-group mb-3">
             <input type="text" className="form-control" placeholder="Application Link" aria-label="Application Link" aria-describedby="basic-addon1"></input>
         </div>
+        <button type="button" className="btn btn-primary">Post Job</button>
         <button type="button" className="btn btn-primary mb-3">Post Job</button>
     </div>
   )

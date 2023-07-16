@@ -11,7 +11,7 @@ const Menu = () => {
             <path d="M0 0h26v18H0z"/>
           </clipPath>
         </defs>
-        <g data-name="アートボード – 1" clip-path="url(#a)" fill="none" stroke="#000">
+        <g data-name="アートボード – 1" clipPath="url(#a)" fill="none" stroke="#000">
           <path data-name="線 1" d="M0 .5h26"/>
           <path data-name="線 2" d="M0 17.5h26"/>
           <path data-name="線 3" d="M0 9h26"/>
