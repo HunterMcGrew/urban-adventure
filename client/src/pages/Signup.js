@@ -4,17 +4,12 @@ import { Link, useNavigate } from "react-router-dom";
 
 const Signup = () => {
 	const [nameInput, setNameInput] = useState("");
-	const [username, setUsername] = useState("");
 	const [userEmail, setUserEmail] = useState("");
 	const [userPass, setUserPass] = useState("");
 	const navigate = useNavigate();
 
 	const handleNameChange = (event) => {
 		setNameInput(event.nativeEvent.target.value);
-	};
-
-	const handleUserChange = (event) => {
-		setUsername(event.nativeEvent.target.value);
 	};
 
 	const handleEmailChange = (event) => {
@@ -34,7 +29,6 @@ const Signup = () => {
 
 		const data = {
 			name: nameInput,
-			username: username,
 			email: userEmail,
 			password: userPass
 		};
@@ -69,17 +63,8 @@ const Signup = () => {
 							type="text"
 							className="form-control"
 							id="name"
-							placeholder="name"
+							placeholder="Full Name"
 							onChange={handleNameChange}
-						/>
-					</div>
-					<div className="form-group m-1">
-						<input
-							type="text"
-							className="form-control"
-							id="username"
-							placeholder="username"
-							onChange={handleUserChange}
 						/>
 					</div>
 				</div>
@@ -101,16 +86,7 @@ const Signup = () => {
 						onChange={handlePassChange}
 					/>
 				</div>
-				<div className="form-check m-1 justify-content-center d-flex">
-					<input
-						type="checkbox"
-						className="form-check-input m-1"
-						id="dropdownCheck"
-					/>
-					<p className="">Are you hiring?</p>
-				</div>
 
-				<Link to="/">
 					{" "}
 					<button
 						type="submit"
@@ -119,7 +95,6 @@ const Signup = () => {
 					>
 						Sign up
 					</button>
-				</Link>
 			</form>
 			<div className="dropdown-divider"></div>
 			<Link className="dropdown-item" to="/login">

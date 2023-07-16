@@ -76,10 +76,10 @@ deleteUser = async (req, res) => {
 };
 
 signup = async (req, res) => {
-	if (req.session.authorized) res.redirect("/", {username: req.session.user.username})
-	const { name, username, email, password, id } = req.body;
+	if (req.session.authorized) res.redirect({email: req.session.user.email}, "/")
+	const { name, email, password, id } = req.body;
 	try {
-		const existingUser = await User.findOne({ username });
+		const existingUser = await User.findOne({ email });
 		if (existingUser) {
 			return res.status(409).json({ message: "Username already exists" });
 		}
@@ -87,8 +87,8 @@ signup = async (req, res) => {
 		const hashPassword = await bcrypt.hash(password, 10);
 
 		const newUser = new User({
+			id: id,
 			name,
-			username,
 			email,
 			password: hashPassword,
 		});
