@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { UpdateProfileModal } from '../modals/UpdateProfileModal';
 
+import Navbar from '../components/Navbar.js';
+
 
 const Profile = () => {
   const [userData, setUserData] = useState();
@@ -106,6 +108,8 @@ const Profile = () => {
         <div className="d-flex justify-content-between">
           <h2>{userData.name}</h2>
           <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onClick={openModal}>Edit Profile</button>
+          <h2>Jane McPheron</h2>
+          <button type="button" className="btn btn-primary"><a className="dropdown-item" href="/editprofile">Edit Profile</a></button>
         </div>
         <div className="">
           <h5 className="d-flex justify-content-left">Chicago, IL</h5>

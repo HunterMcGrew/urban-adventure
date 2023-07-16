@@ -28,7 +28,7 @@
 }
 
 .bg-grey{
-  background-color: rgb(215, 214, 214);
+  background-color: rgb(234, 234, 234);
 }
 .bold{
   font-weight: 700;
@@ -40,7 +40,27 @@
 textarea{
   height: 200px;
 }
+.btn-primary{
+  background-color: #3580f0 !important;
+  outline: none !important;
+}
+.btn-primary:hover{
+  background-color: rgb(27, 60, 179) !important;
+  outline: none !important;
+}
 
+.edit-button{
+  color:#0f4ca9;
+  margin-left: 10px;
+}
+.edit-button:hover{
+  color:#002256;
+  cursor: pointer;
+}
+
+.align-content-center{
+  align-items: center!important;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
